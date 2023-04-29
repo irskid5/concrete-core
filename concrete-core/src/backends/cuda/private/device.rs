@@ -314,7 +314,7 @@ impl CudaStream {
                 &mut pbs_buffer as *mut *mut i8,
             );
         }
-        cuda_synchronize_stream(self.stream.0);
+        // cuda_synchronize_stream(self.stream.0);
     }
 
     /// Discarding bootstrap on a vector of LWE ciphertexts
@@ -410,7 +410,7 @@ impl CudaStream {
                 &mut pbs_buffer as *mut *mut i8,
             );
         }
-        cuda_synchronize_stream(self.stream.0);
+        // cuda_synchronize_stream(self.stream.0);
     }
 
     /// Discarding keyswitch on a vector of LWE ciphertexts
@@ -453,7 +453,7 @@ impl CudaStream {
                 num_samples.0 as u32,
             );
         }
-        cuda_synchronize_stream(self.stream.0);
+        // cuda_synchronize_stream(self.stream.0);
     }
 
     /// Discarding private functional packing keyswitch on a vector of LWE ciphertexts

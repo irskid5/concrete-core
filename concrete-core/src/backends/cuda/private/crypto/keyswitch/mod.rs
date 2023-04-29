@@ -58,6 +58,10 @@ pub(crate) unsafe fn execute_lwe_ciphertext_vector_keyswitch_on_gpu<T: UnsignedI
             samples_per_gpu,
         );
     }
+
+    for stream in streams {
+        stream.synchronize_device()
+    }
 }
 
 #[derive(Debug)]

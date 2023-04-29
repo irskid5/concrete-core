@@ -126,6 +126,10 @@ pub(crate) unsafe fn execute_lwe_ciphertext_vector_low_latency_bootstrap_on_gpu<
             cuda_shared_memory,
         );
     }
+
+    for stream in streams {
+        stream.synchronize_device()
+    }
 }
 
 pub(crate) unsafe fn execute_lwe_ciphertext_vector_amortized_bootstrap_on_gpu<
@@ -186,5 +190,9 @@ pub(crate) unsafe fn execute_lwe_ciphertext_vector_amortized_bootstrap_on_gpu<
             LweCiphertextIndex(samples_on_gpu_0.0 * gpu_index),
             cuda_shared_memory,
         );
+    }
+
+    for stream in streams {
+        stream.synchronize_device()
     }
 }
