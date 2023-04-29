@@ -127,8 +127,9 @@ pub(crate) unsafe fn execute_lwe_ciphertext_vector_low_latency_bootstrap_on_gpu<
         );
     }
 
-    for stream in streams {
-        stream.synchronize_device()
+    // Required to ensure correctness of async operation across GPUs
+    for stream in streams.iter(){
+        stream.synchronize_stream()
     }
 }
 
@@ -192,7 +193,8 @@ pub(crate) unsafe fn execute_lwe_ciphertext_vector_amortized_bootstrap_on_gpu<
         );
     }
 
-    for stream in streams {
-        stream.synchronize_device()
+    // Required to ensure correctness of async operation across GPUs
+    for stream in streams.iter(){
+        stream.synchronize_stream()
     }
 }

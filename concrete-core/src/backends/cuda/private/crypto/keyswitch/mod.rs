@@ -59,8 +59,9 @@ pub(crate) unsafe fn execute_lwe_ciphertext_vector_keyswitch_on_gpu<T: UnsignedI
         );
     }
 
-    for stream in streams {
-        stream.synchronize_device()
+    // Required to ensure correctness of async operation across GPUs
+    for stream in streams.iter(){
+        stream.synchronize_stream()
     }
 }
 
